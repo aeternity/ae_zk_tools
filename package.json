@@ -1,0 +1,46 @@
+{
+  "name": "zk_tools",
+  "version": "1.0.0",
+  "description": "CLI tools for ZK-proofs in Aeternity (Groth16/BLS12-381)",
+  "type": "module",
+  "main": "src/zk_tools.js",
+  "bin": {
+    "zk_tools": "src/zk_tools.js"
+  },
+  "scripts": {
+    "all": "npm run setup; npm test; npm run teardown",
+    "setup": "docker compose -f test/docker-compose.yml up -d",
+    "teardown": "docker compose -f test/docker-compose.yml down -v",
+    "test": "mocha ./test/**/*.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aeternity/ae_zk_tools.git"
+  },
+  "keywords": [
+    "Aeternity",
+    "ZK-proofs",
+    "Sophia",
+    "FATE",
+    "BLS12-381"
+  ],
+  "author": "Hans Svensson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aeternity/ae_zk_tools/issues"
+  },
+  "homepage": "https://github.com/aeternity/ae_zk_tools#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "ejs": "^3.1.9"
+  },
+  "devDependencies": {
+    "@aeternity/aepp-sdk": "^13.2.1",
+    "@aeternity/aeproject": "^4.8.2",
+    "chai": "^4.3.8",
+    "mocha": "^10.2.0",
+    "snarkjs": "^0.7.3",
+    "web-worker": "1.2.0"
+  }
+}

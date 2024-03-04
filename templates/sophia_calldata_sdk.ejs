@@ -1,0 +1,22 @@
+verify(
+<% if (inputs.length == 0) { -%>
+  [],
+<% } else { -%>
+  [ <%=inputs[0]%>
+<% for (let i = 1; i < inputs.length; i++) { -%>
+  , <%=inputs[i]%>
+<% } -%>
+  ],
+<% } -%>
+  {
+    a : [ <%=proof.a[0]%>,
+          <%=proof.a[1]%> ],
+    b : [
+          [ <%=proof.b[0][0]%>,
+            <%=proof.b[0][1]%> ],
+          [ <%=proof.b[1][0]%>,
+            <%=proof.b[1][1]%> ],
+        ],
+    c : [ <%=proof.c[0]%>,
+          <%=proof.c[1]%> ],
+  })

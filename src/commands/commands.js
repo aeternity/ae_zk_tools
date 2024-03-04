@@ -1,0 +1,1 @@
+export {exportSophiaVerifier, exportSophiaCalldata} from './export_sophia.js';
