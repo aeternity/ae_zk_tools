@@ -19,7 +19,7 @@ export async function exportSophiaVerifier(verificationKeyFile, verifierFile, op
   }
 
   const verificationKeyData = await fs.promises.readFile(verificationKeyFile, "utf8");
-  var verificationKey;
+  let verificationKey;
   try {
     verificationKey = JSON.parse(verificationKeyData);
   } catch (e) {
@@ -39,7 +39,7 @@ export async function exportSophiaVerifier(verificationKeyFile, verifierFile, op
   const template = await fs.promises.readFile(path.join(__dirname, '../../templates', 'sophia_verifier_groth16.aes.ejs'), 'utf8');
   const verifierCode = await ejs.render(template, verificationKey);
 
-  fs.writeFileSync(verifierFile, verifierCode, "utf8");
+  await fs.promises.writeFile(verifierFile, verifierCode, "utf8");
   console.log(chalk.greenBright.bold(`Sophia verifier written to ${verifierFile}`));
 }
 
@@ -69,7 +69,7 @@ export async function exportSophiaCalldata(proofFile, publicFile, options){
 
 
   const proofData = await fs.promises.readFile(proofFile, "utf8");
-  var proof;
+  let proof;
   try {
     proof = JSON.parse(proofData);
   } catch (e) {
@@ -99,9 +99,9 @@ export async function exportSophiaCalldata(proofFile, publicFile, options){
     proof.proof.c = proof.pi_c;
   }
 
-  var calldata;
+  let calldata;
   if (options.compiler) {
-    var inputs = "";
+    let inputs = "";
     for (let i=0; i<proof.inputs.length; i++) {
         if (inputs != "") inputs = inputs + ",";
         inputs = inputs + cli_n(proof.inputs[i]);
